@@ -1,0 +1,32 @@
+{
+  "name": "scriptable-scripts",
+  "version": "5.0.0",
+  "author": "淮城一只猫",
+  "license": "MIT",
+  "scripts": {
+    "watch:油价小组件": "FILE=油价小组件 NAME=油价小组件-测试 rollup --config rollup.config.mts --configPlugin typescript --environment NODE_ENV:development --watch",
+    "build:油价小组件": "FILE=油价小组件 NAME=OilPrice COLOR=blue GLYPH=bus rollup --config rollup.config.mts --configPlugin typescript --environment NODE_ENV:production",
+    "clear": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@jag-k/scriptable-jsx": "^1.1.3",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.14.10",
+    "@types/scriptable-ios": "^1.7.7",
+    "eslint": "^9.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "javascript-obfuscator": "^4.1.1",
+    "prettier": "^3.3.2",
+    "rollup": "^4.18.0",
+    "rollup-plugin-banner2": "^1.3.0",
+    "rollup-plugin-obfuscator": "^1.1.0",
+    "tslib": "^2.5.0",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.14.1"
+  }
+}

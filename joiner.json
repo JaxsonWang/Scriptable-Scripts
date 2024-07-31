@@ -1,0 +1,21 @@
+{
+  "inherit": true,
+  "version": "5.0.0",
+  "banner": {
+    "image": "https://joiner.i95.me/v4/images/banner.jpg"
+  },
+  "resources": [
+    {
+      "id": "OilPrice",
+      "tag": "theme",
+      "tagName": "主题",
+      "name": "油价小组件",
+      "desc": "在桌面组件展示中国油价（无需密钥版）",
+      "download": "https://joiner.i95.me/v4/OilPrice.js",
+      "version": "2.0.0",
+      "changelog": [
+        "1. 支持“noBgImg”参数"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext"],
+    "jsx": "react",
+    "jsxFactory": "ScriptableJSX.createElement",
+    "typeRoots": ["./node_modules/@types", "./node_modules/@jag-k/scriptable-jsx/types", "./src/types"],
+    "types": ["node", "scriptable-jsx", "scriptable-ios"],
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "rootDir": "./",
+    // "noUnusedLocals": false,
+    // "noUnusedParameters": false,
+    // "strict": true,
+    "skipLibCheck": true,
+    // "suppressImplicitAnyIndexErrors": true,
+    // "noEmit": true,
+    // "isolatedModules": true,
+    // "esModuleInterop": true,
+    "paths": {
+      "@": ["src"],
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["dist", "node_modules"],
+  "include": ["src/**/*", "types/**/*"]
+}
