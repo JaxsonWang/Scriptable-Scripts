@@ -4,7 +4,7 @@ import { ScriptableJSX } from '@jag-k/scriptable-jsx'
 export default async function (widgetData: OilPriceResponseData): Promise<ListWidget> {
   return (
     <widget>
-      <stack layout={'vertical'}>
+      <stack layout="vertical">
         <text
           {...BaseText({
             widgetData,
