@@ -26,9 +26,9 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             {'中国油价 • ' + widgetData.region}
           </text>
         </stack>
-        <spacer/>
+        <spacer />
       </stack>
-      <spacer/>
+      <spacer />
       <stack layout="vertical">
         <stack align="bottom">
           <text
@@ -123,18 +123,18 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
           </stack>
         </stack>
       </stack>
-      <spacer/>
+      <spacer />
       <stack>
-        <spacer/>
+        <spacer />
         <text
           {...BaseText({
             widgetData,
             size: 10
           })}
         >
-          {`${widgetData.startDate}刷新`}
+          {`${widgetData.startDate}刷新  `}
         </text>
-        <spacer/>
+        <spacer />
       </stack>
     </widget>
   )

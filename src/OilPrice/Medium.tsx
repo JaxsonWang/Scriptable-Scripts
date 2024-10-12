@@ -7,6 +7,9 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
 
   const { backgroundImage, backgroundGradient, imageTintColor } = await BaseWidget.bind(this)(type, widgetData)
 
+  const handleNowStatus =
+    widgetData.priceDirection === 'rising' ? `上涨    ` : widgetData.priceDirection === 'falling' ? `下跌    ` : `搁浅    `
+
   return (
     <widget backgroundImage={backgroundImage} backgroundGradient={backgroundGradient}>
       <stack>
@@ -26,11 +29,11 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             {'中国油价 • ' + widgetData.region}
           </text>
         </stack>
-        <spacer/>
+        <spacer />
       </stack>
-      <spacer/>
+      <spacer />
       <stack>
-        <spacer/>
+        <spacer />
         <stack layout="vertical">
           <text
             {...BaseText({
@@ -73,7 +76,7 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             </text>
           </stack>
         </stack>
-        <spacer/>
+        <spacer />
         <stack layout="vertical">
           <text
             {...BaseText({
@@ -116,7 +119,7 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             </text>
           </stack>
         </stack>
-        <spacer/>
+        <spacer />
         <stack layout="vertical">
           <text
             {...BaseText({
@@ -159,7 +162,7 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             </text>
           </stack>
         </stack>
-        <spacer/>
+        <spacer />
         <stack layout="vertical">
           <stack>
             <text
@@ -204,56 +207,20 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             </text>
           </stack>
         </stack>
-        <spacer/>
+        <spacer />
       </stack>
-      <spacer/>
+      <spacer />
       <stack>
-        <spacer/>
+        <spacer />
         <text
           {...BaseText({
             widgetData,
             size: 10
           })}
         >
-          {widgetData.startDate}
+          {`${widgetData.startDate}刷新 • ${widgetData.forecastDate + handleNowStatus}`}
         </text>
-        <text
-          {...BaseText({
-            widgetData,
-            size: 10
-          })}
-        >
-          刷新
-        </text>
-        <text
-          {...BaseText({
-            widgetData,
-            size: 10
-          })}
-        >
-          {` • `}
-        </text>
-        <text
-          {...BaseText({
-            widgetData,
-            size: 10
-          })}
-        >
-          {widgetData.forecastDate}
-        </text>
-        <text
-          {...BaseText({
-            widgetData,
-            size: 10
-          })}
-        >
-          {widgetData.priceDirection === 'rising'
-            ? '上涨调整'
-            : widgetData.priceDirection === 'falling'
-              ? '下跌调整'
-              : '搁浅调整'}
-        </text>
-        <spacer/>
+        <spacer />
       </stack>
     </widget>
   )
