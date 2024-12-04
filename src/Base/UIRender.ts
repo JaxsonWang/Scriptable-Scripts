@@ -266,22 +266,29 @@ class UIRender extends Core {
     try {
       const wallpaper = await Photos.fromLibrary()
       const height = wallpaper.size.height
-      let suffix = ''
+
+      let phone = PhoneSizes[height]
+      if (!phone) {
+        message = '您选择的照片好像不是正确的截图，或者您的机型暂时不支持。'
+        await this.generateAlert('提示', message, ['知道了'])
+        return
+      }
 
       if (height === 2436) {
         message = '请选择您的 iPhone 型号'
         const options = ['iPhone 12 mini', 'iPhone 11 Pro, iPhone XS, 或者 iPhone X']
         const result = await this.generateAlert('Joiner 提示', message, options)
-        if (result === 0) {
-          suffix = '_mini'
-        }
+        const suffix = result === 0 ? 'mini' : 'x'
+        phone = phone[suffix]
       }
 
-      const phone = PhoneSizes[height + suffix]
-      if (!phone) {
-        message = '您选择的照片好像不是正确的截图，或者您的机型暂时不支持。'
-        await this.generateAlert('提示', message, ['知道了'])
-        return
+      // If supported, check whether home screen has text labels or not.
+      if (phone.text) {
+        message = '主屏幕是否有文本标签？'
+        const textOptions = ['有', '无']
+        const _textOptions = ['text', 'notext']
+        const textResponse = await this.generateAlert('Joiner 提示', message, textOptions)
+        phone = phone[_textOptions[textResponse]]
       }
 
       // Prompt for widget size and position.
@@ -299,34 +306,36 @@ class UIRender extends Core {
       let positions: string[]
       let _positions: string[]
       let position: number
+      let keys = []
+      let key = ''
       switch (widgetSize) {
         case 'Small':
-          crop.w = phone.small.w
-          crop.h = phone.small.h
+          crop.w = phone.small
+          crop.h = phone.small
           positions = ['Top left', 'Top right', 'Middle left', 'Middle right', 'Bottom left', 'Bottom right']
           _positions = ['左上角', '右上角', '中间左', '中间右', '左下角', '右下角']
           position = await this.generateAlert('提示', message, _positions)
 
           // Convert the two words into two keys for the phone size dictionary.
-          const keys = positions[position].toLowerCase().split(' ')
+          keys = positions[position].toLowerCase().split(' ')
           crop.y = phone[keys[0]]
           crop.x = phone[keys[1]]
           break
         case 'Medium':
-          crop.w = phone.medium.w
-          crop.h = phone.medium.h
+          crop.w = phone.medium
+          crop.h = phone.small
 
           // Medium and large widgets have a fixed x-value.
           crop.x = phone.left
           positions = ['Top', 'Middle', 'Bottom']
           _positions = ['顶部', '中部', '底部']
           position = await this.generateAlert('提示', message, _positions)
-          const key = positions[position].toLowerCase()
+          key = positions[position].toLowerCase()
           crop.y = phone[key]
           break
         case 'Large':
-          crop.w = phone.large.w
-          crop.h = phone.large.h
+          crop.w = phone.medium
+          crop.h = phone.large
           crop.x = phone.left
           positions = ['Top', 'Bottom']
           _positions = ['顶部', '底部']

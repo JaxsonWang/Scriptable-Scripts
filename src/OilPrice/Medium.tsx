@@ -10,6 +10,22 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
   const handleNowStatus =
     widgetData.priceDirection === 'rising' ? `上涨    ` : widgetData.priceDirection === 'falling' ? `下跌    ` : `搁浅    `
 
+  const forecastOilPrice = () => {
+    const currentOilPrice = Number(widgetData[widgetData.forecastOilGrade].replace('¥', ''))
+    let countCurrentOilPrice = 0
+    switch (widgetData.priceDirection) {
+      case 'rising':
+        countCurrentOilPrice = currentOilPrice + Number(widgetData.forecastPrice)
+        break
+      case 'falling':
+        countCurrentOilPrice = currentOilPrice - Number(widgetData.forecastPrice)
+        break
+      case 'stranded':
+        countCurrentOilPrice = currentOilPrice
+    }
+    return (countCurrentOilPrice * Number(widgetData.forecastOilCapacity)).toFixed(2)
+  }
+
   return (
     <widget backgroundImage={backgroundImage} backgroundGradient={backgroundGradient}>
       <stack>
@@ -207,6 +223,19 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
             </text>
           </stack>
         </stack>
+        <spacer />
+      </stack>
+      <spacer />
+      <stack>
+        <spacer />
+        <text
+          {...BaseText({
+            widgetData,
+            size: 10
+          })}
+        >
+          {`预计加满 ${widgetData.forecastOilGrade.replace('oil', '')} 号汽油 ${widgetData.forecastOilCapacity} 升需要 ${forecastOilPrice()} 元`}
+        </text>
         <spacer />
       </stack>
       <spacer />

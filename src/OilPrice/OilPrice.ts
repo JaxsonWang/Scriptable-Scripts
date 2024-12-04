@@ -172,7 +172,7 @@ class OilPrice extends UIRender {
     this.defaultRefreshAfterDate = 60
     this.isUpdate = false
     this.updateHttp = 'https://joiner.i95.me/v4/joiner.json'
-    this.version = '2.0.2'
+    this.version = '2.0.3'
   }
 
   /**
@@ -204,6 +204,8 @@ class OilPrice extends UIRender {
       areaType: '32',
       areaZoneType: 0,
       oilGradeColor: '#EB604D',
+      forecastOilGrade: 'oil95',
+      forecastOilCapacity: 56,
       oilIconType: 'drop',
       oilIconSize: 18
     }
@@ -249,6 +251,36 @@ class OilPrice extends UIRender {
           options: this.areaZoneOptions,
           default: this.settings['areaTypeZone'],
           tip: '部分省份：「贵州、黑龙江、西藏、青海等」需要选择价区，其它省份无视此选项。第一次用请选择地区然后预览组件重新打开菜单选择本选项即可。'
+        },
+        {
+          name: 'forecastOilGrade',
+          label: '偏好油标号',
+          type: 'select',
+          options: [
+            {
+              label: '92#',
+              value: 'oil92'
+            },
+            {
+              label: '95#',
+              value: 'oil95'
+            },
+            {
+              label: '98#',
+              value: 'oil98'
+            },
+            {
+              label: '0#',
+              value: 'oil0'
+            }
+          ],
+          default: this.settings['forecastOilGrade']
+        },
+        {
+          name: 'forecastOilCapacity',
+          label: '偏好油量(升)',
+          type: 'number',
+          default: this.settings['forecastOilCapacity']
         },
         {
           name: 'oilGradeColor',
@@ -481,6 +513,8 @@ class OilPrice extends UIRender {
         textColorInLight: this.settings['textColorInLight'],
         textColorInDark: this.settings['textColorInDark'],
         oilGradeColor: this.settings['oilGradeColor'],
+        forecastOilGrade: this.settings['forecastOilGrade'],
+        forecastOilCapacity: this.settings['forecastOilCapacity'],
         oilIconType: this.settings['oilIconType'],
         oilIconSize: this.settings['oilIconSize']
       }
