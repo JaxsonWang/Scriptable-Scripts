@@ -172,7 +172,7 @@ class OilPrice extends UIRender {
     this.defaultRefreshAfterDate = 60
     this.isUpdate = false
     this.updateHttp = 'https://joiner.i95.me/v4/joiner.json'
-    this.version = '2.0.0'
+    this.version = '2.0.2'
   }
 
   /**
@@ -425,9 +425,9 @@ class OilPrice extends UIRender {
     let forecastDate = this.formatDate(new Date(), 'yyyy年MM月dd日')
     // 油价上涨、下跌还是搁浅 rising、falling、stranded
     let priceDirection: 'rising' | 'falling' | 'stranded' = 'stranded'
-    if (/搁浅/gm.test(str)) priceDirection = 'stranded'
     if (/上涨|大涨|上调/gm.test(str)) priceDirection = 'rising'
     if (/下跌|大跌|下调/gm.test(str)) priceDirection = 'falling'
+    if (/搁浅/gm.test(str)) priceDirection = 'stranded'
 
     if (match) {
       let data: string | string[] = match[0] // 输出 "0.27元/升-0.33元/升"
