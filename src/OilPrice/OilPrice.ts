@@ -172,7 +172,7 @@ class OilPrice extends UIRender {
     this.defaultRefreshAfterDate = 60
     this.isUpdate = false
     this.updateHttp = 'https://joiner.i95.me/v4/joiner.json'
-    this.version = '2.0.3'
+    this.version = '2.0.4'
   }
 
   /**

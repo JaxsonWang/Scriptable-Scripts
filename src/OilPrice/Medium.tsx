@@ -238,7 +238,6 @@ export default async function (widgetData: OilPriceResponseData): Promise<ListWi
         </text>
         <spacer />
       </stack>
-      <spacer />
       <stack>
         <spacer />
         <text
